@@ -40,9 +40,22 @@ def guess(Wörterliste,gamestart):
         listedWord = list(word)
         gamestart=1
     letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
-    posinlist=listedWord.index(letter)
-    lettertoshowfound= listedWord.pop(posinlist)
-    print(lettertoshowfound)
+    for i in listedWord:
+        if(i.find(letter) == 0 or i.find(letter.lower()) == 0):
+            posinlist=listedWord.index(letter)
+            lettertoshowfound= listedWord.pop(posinlist)
+            print(lettertoshowfound)
+        else:
+            damage()
+            
+def damage():            
+    print("Leider ist der Buchtabe nicht in dem Gesuchten wort")
+    lives = lives - 1
+def death():
+    print(hang.death)
+    
+    
+
 
 
     
