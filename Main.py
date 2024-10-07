@@ -2,16 +2,12 @@ import hang
 import random
 def startsceen():
     print("|---Welcome to Python Hangman---|")
-    print("| #######   #     #             |")
-    print("|    #      ##   ##             |")
-    print("|    #      # # # #             |")
-    print("|    #      #  #  #             |")
+    print("|            Made By            |")
     print("|                               |")
-    print("|                               |")
-    print("|                               |")
-    print("|                               |")
-    print("|                               |")
-    print("|                               |")
+    print("| #######   #     #    ###      |")
+    print("|    #      ##   ##   #         |")
+    print("|    #      # # # #   #         |")
+    print("|    #      #  #  #    ###      |")
     print("|-------------------------------|")
 
 Wörterliste=[
