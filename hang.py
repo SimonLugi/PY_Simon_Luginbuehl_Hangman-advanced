@@ -1,5 +1,4 @@
-import random
-HANGMANPICS = ['''
+MAN = ['''
 
   +---+
   |   |
