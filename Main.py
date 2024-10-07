@@ -33,15 +33,17 @@ Wörterliste=[
 "Repository"]
 
 gamestart= 0
-def guess(Wörterliste):
+def guess(Wörterliste,gamestart):
     if gamestart == 0:
         rnum = random.randint(0,19)
         word = Wörterliste.pop(rnum)
         listedWord = list(word)
-    else:
-        letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
-        
-        lettertoshowfound= listedWord.pop(posinlist)
+        gamestart=1
+    letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
+    posinlist=listedWord.index(letter)
+    lettertoshowfound= listedWord.pop(posinlist)
+    print(lettertoshowfound)
+
 
     
     
@@ -53,4 +55,4 @@ def guess(Wörterliste):
     
     
 startsceen()
-guess(Wörterliste)
+guess(Wörterliste,gamestart)
