@@ -32,6 +32,7 @@ Wörterliste=[
 "Microservices",
 "Repository"]
 
+lives= 10 
 gamestart= 0
 def guess(Wörterliste,gamestart):
     if gamestart == 0:
@@ -51,6 +52,7 @@ def guess(Wörterliste,gamestart):
 def damage():            
     print("Leider ist der Buchtabe nicht in dem Gesuchten wort")
     lives = lives - 1
+    guess(Wörterliste,gamestart)
 def death():
     print(hang.death)
     
