@@ -1,32 +1,12 @@
 import hang
 import random
 
-Wörterliste=[
-"Algorithmus",
-"API",
-"Cloud",
-"Datenbank",
-"Debugging",
-"Frontend",
-"Backend",
-"Netzwerk",
-"Server",
-"Virtualisierung",
-"Container",
-"DevOps",
-"Verschlüsselung",
-"Skripting",
-"Middleware",
-"Architektur",
-"Benutzeroberfläche",
-"Framework",
-"Microservices",
-"Repository"]
-
 lives= 6 
 gamestart=0
 gpUpdate= 0
 shtext=[]
+
+
 def generateWord(Wörterliste):
     rnum = random.randint(0,19)
     word = Wörterliste.pop(rnum)
@@ -71,15 +51,4 @@ def main():
     generateWord(Wörterliste)
     guess(Wörterliste,gamestart)    
     
-
-
-
-    
-    
 main()
-    
-    
-    
-    
-    
-    
