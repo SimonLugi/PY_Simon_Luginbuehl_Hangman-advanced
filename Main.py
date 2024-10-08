@@ -1,14 +1,5 @@
 import hang
 import random
-def startsceen():
-    print("|---Welcome to Python Hangman---|")
-    print("|            Made By            |")
-    print("|                               |")
-    print("| #######   #     #    ###      |")
-    print("|    #      ##   ##   #         |")
-    print("|    #      # # # #   #         |")
-    print("|    #      #  #  #    ###      |")
-    print("|-------------------------------|")
 
 Wörterliste=[
 "Algorithmus",
@@ -32,7 +23,7 @@ Wörterliste=[
 "Microservices",
 "Repository"]
 
-lives= 10 
+lives= 0 
 gamestart= 0
 shtext=[]
 def guess(Wörterliste,gamestart):
@@ -46,9 +37,7 @@ def guess(Wörterliste,gamestart):
     if letter in listedWord or letter.lower() in listedWord:
         tfmi(letter,listedWord)
     else:
-        print(f"Letter '{letter}' not found in the word.")
         damage(lives)  
-
 def tfmi(letter,listedWord,shtext):
     for i in range(0,len(listedWord)):
         if letter in listedWord or letter.lower() in listedWord:
@@ -56,15 +45,14 @@ def tfmi(letter,listedWord,shtext):
             lettertoshowfound = listedWord.pop(posinlist)  
             shtext = shtext.insert(posinlist,lettertoshowfound)  
         else:
-            guess(Wörterliste,gamestart)        
-        
+            guess(Wörterliste,gamestart)             
 def damage(lives):            
     print("Leider ist der Buchtabe nicht in dem Gesuchten wort")
-    lives = lives - 1
+    lives = lives + 1
     guess(Wörterliste,gamestart)
 def death():
     print(hang.death)
-    
+   
     
 
 
@@ -78,5 +66,5 @@ def death():
     
     
     
-startsceen()
+hang.startsceen()
 guess(Wörterliste,gamestart)
