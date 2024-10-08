@@ -41,8 +41,7 @@ def guess(listedWord):
         tfmi(shtext,letter,listedWord)
     else:
         print(listedWord)
-        damage(lives,gpUpdate)
-          
+        damage(lives,gpUpdate)      
 def tfmi(letter,listedWord,shtext):
     for i in range(0,len(listedWord)):
         if letter in listedWord or letter.lower() in listedWord:
@@ -65,9 +64,7 @@ def death():
     print("You Died")
 def graphics(gpUpdate):
     print(hang.man[gpUpdate])
-    
-    
-    
+     
 def main():
     hang.startsceen()
     graphics(gpUpdate)
