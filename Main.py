@@ -1,10 +1,34 @@
 import hang
 import random
 
+
 lives= 6 
 gamestart=0
 gpUpdate= 0
 shtext=[]
+
+
+Wörterliste=[
+"Algorithmus",
+"API",
+"Cloud",
+"Datenbank",
+"Debugging",
+"Frontend",
+"Backend",
+"Netzwerk",
+"Server",
+"Virtualisierung",
+"Container",
+"DevOps",
+"Verschlüsselung",
+"Skripting",
+"Middleware",
+"Architektur",
+"Benutzeroberfläche",
+"Framework",
+"Microservices",
+"Repository"]
 
 
 def generateWord(Wörterliste):
@@ -14,17 +38,21 @@ def generateWord(Wörterliste):
     print(listedWord)
     gamestart=1
     print(gamestart)
+    return(listedWord)
+
 def guess(listedWord):
     letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
-    if letter in listedWord or letter.lower() in listedWord:
+    if letter.upper() in listedWord or letter.lower() in listedWord:
         print(listedWord)
         tfmi(shtext,letter,listedWord)
     else:
         print(listedWord)
-        damage(lives,gpUpdate)      
+        damage(lives,gpUpdate,listedWord)
+        
+              
 def tfmi(letter,listedWord,shtext):
-    for i in range(0,len(listedWord)):
-        if letter in listedWord or letter.lower() in listedWord:
+    for i in range(0,len(list(listedWord))):
+        if letter.upper() in listedWord or letter.lower() in listedWord:
             posinlist = listedWord.index(letter)
             lettertoshowfound = listedWord.pop(posinlist)  
             shtext[posinlist]= lettertoshowfound  
@@ -34,11 +62,12 @@ def damage(lives,gpUpdate,listedWord):
     if lives == 0:
         death()
     else:           
-        print("Leider ist der Buchtabe nicht in dem Gesuchten wort")
+        print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
         lives = lives - 1
+        print("Du hast noch ",lives," leben")
         gpUpdate = gpUpdate + 1
+        graphics(gpUpdate)
         guess(listedWord) #Applying damage and send update to graphics
-        graphics
 def death():
     print(hang.death)
     print("You Died")
@@ -48,7 +77,6 @@ def graphics(gpUpdate):
 def main():
     hang.startsceen()
     graphics(gpUpdate)
-    generateWord(Wörterliste)
-    guess(Wörterliste,gamestart)    
+    guess(generateWord(Wörterliste))
     
 main()

@@ -91,25 +91,3 @@ def startsceen():
     print("|    #      #  #  #    ###      |")
     print("|-------------------------------|")
 
-
-Wörterliste=[
-"Algorithmus",
-"API",
-"Cloud",
-"Datenbank",
-"Debugging",
-"Frontend",
-"Backend",
-"Netzwerk",
-"Server",
-"Virtualisierung",
-"Container",
-"DevOps",
-"Verschlüsselung",
-"Skripting",
-"Middleware",
-"Architektur",
-"Benutzeroberfläche",
-"Framework",
-"Microservices",
-"Repository"]
