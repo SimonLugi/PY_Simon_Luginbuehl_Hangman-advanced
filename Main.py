@@ -1,12 +1,10 @@
 import hang
 import random
 
-
 lives= 6 
 gamestart=0
 gpUpdate= 0
 shtext=[]
-
 
 Wörterliste=[
 "Algorithmus",
@@ -34,31 +32,41 @@ Wörterliste=[
 def generateWord(Wörterliste):
     rnum = random.randint(0,19)
     word = Wörterliste.pop(rnum)
+    word = word.upper()
     listedWord = list(word)
     print(listedWord)
     gamestart=1
     print(gamestart)
-    return(listedWord)
+    return(listedWord,word)
 
-def guess(listedWord):
-    letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
-    if letter.upper() in listedWord or letter.lower() in listedWord:
-        print(listedWord)
-        tfmi(shtext,letter,listedWord)
-    else:
-        print(listedWord)
-        damage(lives,gpUpdate,listedWord)
+def showgen(word):
+    for i in range(0,len(list(word))):
+        shtext.append("_")
         
-              
-def tfmi(letter,listedWord,shtext):
-    for i in range(0,len(list(listedWord))):
-        if letter.upper() in listedWord or letter.lower() in listedWord:
+def guess(listedWord,word):
+    graphics(gpUpdate,shtext)
+    letter = str(input("Gib bitte den Buchstaben den du raten möchtest ein:"))
+    letter = letter.upper()
+    if letter in listedWord:
+        tfmi(letter=letter,listedWord=listedWord,word=word,shtext=shtext)
+    elif listedWord ==  []:
+        win()
+    elif letter not in listedWord:
+        damage(lives,gpUpdate,listedWord,word)
+    #elif letter in shtext :
+        
+def tfmi(letter,listedWord,word,shtext):
+    for i in range(0,len(list(word))):
+        if letter in listedWord:
             posinlist = listedWord.index(letter)
-            lettertoshowfound = listedWord.pop(posinlist)  
-            shtext[posinlist]= lettertoshowfound  
+            lettertoshowfound = listedWord.pop(posinlist)
+            listedWord.insert(posinlist,"/")
+            shtext[posinlist]= lettertoshowfound
+            print(posinlist,lettertoshowfound)
         else:
-            guess(listedWord)             
-def damage(lives,gpUpdate,listedWord):
+            guess(listedWord=listedWord,word=word)
+            
+def damage(listedWord,word,lives=lives,gpUpdate=gpUpdate):
     if lives == 0:
         death()
     else:           
@@ -66,17 +74,25 @@ def damage(lives,gpUpdate,listedWord):
         lives = lives - 1
         print("Du hast noch ",lives," leben")
         gpUpdate = gpUpdate + 1
-        graphics(gpUpdate)
-        guess(listedWord) #Applying damage and send update to graphics
+        guess(listedWord,word) #Applying damage and send update to graphics
+        return(gpUpdate,lives)
+        
 def death():
     print(hang.death)
     print("You Died")
-def graphics(gpUpdate):
+    
+
+def graphics(gpUpdate=gpUpdate,shtext=shtext):
     print(hang.man[gpUpdate])
-     
+    print(shtext)
+
+def win():
+    print(chr(27) + "[2J")
+    
 def main():
     hang.startsceen()
-    graphics(gpUpdate)
-    guess(generateWord(Wörterliste))
+    listedWord, word = generateWord(Wörterliste)
+    showgen(word)
+    guess(listedWord, word)
     
 main()
