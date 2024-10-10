@@ -1,6 +1,7 @@
 import hang
 import random
 
+global lives, gpUpdate
 lives=int(6)
 gamestart=0
 gpUpdate= 0
@@ -46,10 +47,10 @@ def guess(listedWord, word):
     letter = letter.upper()
     if letter in listedWord:
         tfmi(letter=letter,listedWord=listedWord,word=word,shtext=shtext)
-    elif listedWord ==  []:
+    elif listedWord == []:
         win()
     elif letter not in listedWord:
-        damage(listedWord,word,lives,gpUpdate)
+        damage(listedWord,word)
     #elif letter in shtext :
         
 def tfmi(letter,listedWord,word,shtext):
@@ -63,16 +64,17 @@ def tfmi(letter,listedWord,word,shtext):
         else:
             guess(listedWord=listedWord,word=word)
             
-def damage(listedWord, word, lives, gpUpdate):
+def damage(listedWord, word):
+    global lives, gpUpdate
+    print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
+    lives -= 1
+    print(lives)
+    gpUpdate += 1
+    print("Du hast noch ",lives," leben")
     if lives == 0:
         death()
-    else:           
-        print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
-        lives = lives - 1
-        gpUpdate = gpUpdate + 1
-        print("Du hast noch ",lives," leben")
-        guess(listedWord,word)
-    return(gpUpdate,lives)
+    else:
+        guess(listedWord, word)
         
         
 def death():
