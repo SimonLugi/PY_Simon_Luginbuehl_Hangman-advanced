@@ -1,5 +1,6 @@
 import hang
 import random
+import time
 
 global lives, graphicsUpdate,out
 lives=int(6)
@@ -8,11 +9,21 @@ graphicsUpdate= 0
 showtext=[]
 alreadyguessd:list=[]
 
-Wörterliste=["Algorithmus", "API", "Cloud", "Daten", "Debugging", "Frontend", "Backend", "Server", "Datenbank", "Virtualisierung", "Container", "DevOps", "Verschlüsselung", "Skripting", "Middleware", "Architektur", "Benutzeroberfläche", "Framework", "Microservices", "Repository", "SSH", "VPN", "Load Balancer", "CI/CD", "Docker", "Kubernetes", "SQL", "NoSQL", "Firewall", "DNS", "HTTP", "HTTPS", "JSON", "XML", "API Gateway", "HTTP Proxy", "SSL", "TLS", "IPv4", "IPv6", "LAN", "WAN", "VLAN", "IPsec", "Gateway", "Switch", "Router", "Token", "Zertifikat", "Authentifizierung", "Autorisierung", "OAuth", "Sitzung", "Cookie", "Websocket", "Nginx", "Apache", "BGP", "NAT", "Subnetz", "CIDR", "Lastverteilung", "Backup", "Wiederherstellung", "RAID", "SSD", "HDD", "Bandbreite", "Durchsatz", "Latenz", "Ping", "Traceroute", "QoS", "DNSSEC", "CDN", "Edge Computing", "Cache", "Trefferquote", "DDoS", "Spoofing", "Phishing", "Social Engineering", "Zero Trust", "Malware", "Ransomware", "Virus", "Trojaner", "Wurm", "Botnetz", "Honeypot", "SIEM", "IDS", "IPS", "SOC", "Incident Response", "Penetrationstest", "Schwachstelle", "Exploit", "Patch"]
+def playagain():
+    inx = input("Do you want to play again? Yes/No: ")
+    inx = inx.upper()
+    if inx == "YES":
+        main()
+    else:
+        exit
+
+
+Wörterliste=["Algorithmus", "API", "Cloud", "Daten", "Debugging", "Frontend", "Backend", "Server", "Datenbank", "Virtualisierung", "Container", "DevOps", "Verschlüsselung", "Skripting", "Middleware", "Architektur", "Benutzeroberfläche", "Framework", "Microservices", "Repository", "SSH", "VPN", "Load Balancer", "CI", "Docker", "Kubernetes", "SQL", "NoSQL", "Firewall", "DNS", "HTTP", "HTTPS", "JSON", "XML", "Gateway", "HTTP Proxy", "SSL", "TLS", "IPv4", "IPv6", "LAN", "WAN", "VLAN", "IPsec", "Gateway", "Switch", "Router", "Token", "Zertifikat", "Authentifizierung", "Autorisierung", "OAuth", "Sitzung", "Cookie", "Websocket", "Nginx", "Apache", "BGP", "NAT", "Subnetz", "CIDR", "Lastverteilung", "Backup", "Wiederherstellung", "RAID", "SSD", "HDD", "Bandbreite", "Durchsatz", "Latenz", "Ping", "Traceroute", "QoS", "DNSSEC", "CDN", "Edge Computing", "Cache", "Trefferquote", "DDoS", "Spoofing", "Phishing", "Social Engineering", "Zero Trust", "Malware", "Ransomware", "Virus", "Trojaner", "Wurm", "Botnetz", "Honeypot", "SIEM", "IDS", "IPS", "SOC", "Incident Response", "Penetrationstest", "Schwachstelle", "Exploit", "Patch"]
 
 def generateWord(Wörterliste: list):
     global wortlänge
-    rnum = random.randint(0,100)
+    rnum = random.randint(0,95)
+    print("RNUM",rnum)
     word: str = Wörterliste.pop(rnum)
     word = word.upper()
     listedWord = list(word)
@@ -65,6 +76,8 @@ def damage(listedWord, word):
 def death():
     print(hang.death)
     print("You Died")
+    print(hang.dragon)
+    playagain()
     
 def graphics(graphicsUpdate, showtext):
     print(hang.man[graphicsUpdate])
@@ -77,9 +90,13 @@ def graphics(graphicsUpdate, showtext):
 
 def win():
     print(chr(27) + "[2J")
-    print("you have won")
-    
+    print(hang.win)
+    for _ in range(0,20):
+        print("\n")
+        time.sleep(0.125)  
+    playagain()
 def main():
+    hang.Wörterliste
     hang.startsceen()
     listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)

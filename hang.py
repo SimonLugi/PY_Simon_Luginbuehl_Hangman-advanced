@@ -1,3 +1,105 @@
+Wörterliste = [
+    "Algorithmus",
+    "API",
+    "Cloud",
+    "Daten",
+    "Debugging",
+    "Frontend",
+    "Backend",
+    "Server",
+    "Datenbank",
+    "Virtualisierung",
+    "Container",
+    "DevOps",
+    "Verschlüsselung",
+    "Skripting",
+    "Middleware",
+    "Architektur",
+    "Benutzeroberfläche",
+    "Framework",
+    "Microservices",
+    "Repository",
+    "SSH",
+    "VPN",
+    "Load",
+    "Balancer",
+    "CI",
+    "Docker",
+    "Kubernetes",
+    "SQL",
+    "NoSQL",
+    "Firewall",
+    "DNS",
+    "HTTP",
+    "HTTPS",
+    "JSON",
+    "XML",
+    "Gateway",
+    "HTTP Proxy",
+    "SSL",
+    "TLS",
+    "IPv4",
+    "IPv6",
+    "LAN",
+    "WAN",
+    "VLAN",
+    "IPsec",
+    "Gateway",
+    "Switch",
+    "Router",
+    "Token",
+    "Zertifikat",
+    "Authentifizierung",
+    "Autorisierung",
+    "OAuth",
+    "Sitzung",
+    "Cookie",
+    "Websocket",
+    "Nginx",
+    "Apache",
+    "BGP",
+    "NAT",
+    "Subnetz",
+    "CIDR",
+    "Lastverteilung",
+    "Backup",
+    "Wiederherstellung",
+    "RAID",
+    "SSD",
+    "HDD",
+    "Bandbreite",
+    "Durchsatz",
+    "Latenz",
+    "Ping",
+    "Traceroute",
+    "QoS",
+    "DNSSEC",
+    "CDN",
+    "Cache",
+    "Trefferquote",
+    "DDoS",
+    "Spoofing",
+    "Phishing",
+    "Malware",
+    "Ransomware",
+    "Virus",
+    "Trojaner",
+    "Wurm",
+    "Botnetz",
+    "Honeypot",
+    "SIEM",
+    "IDS",
+    "IPS",
+    "SOC",
+    "Penetrationstest",
+    "Schwachstelle",
+    "Exploit",
+    "Patch"
+]
+
+
+
+
 man = ['''
 
   +---+
@@ -91,3 +193,31 @@ def startsceen():
     print("|    #      #  #  #    ###      |")
     print("|-------------------------------|")
 
+
+win ="""
+$$\     $$\                         $$\      $$\ $$\           
+\$$\   $$  |                        $$ | $\  $$ |\__|          
+ \$$\ $$  /$$$$$$\  $$\   $$\       $$ |$$$\ $$ |$$\ $$$$$$$\  
+  \$$$$  /$$  __$$\ $$ |  $$ |      $$ $$ $$\$$ |$$ |$$  __$$\ 
+   \$$  / $$ /  $$ |$$ |  $$ |      $$$$  _$$$$ |$$ |$$ |  $$ |
+    $$ |  $$ |  $$ |$$ |  $$ |      $$$  / \$$$ |$$ |$$ |  $$ |
+    $$ |  \$$$$$$  |\$$$$$$  |      $$  /   \$$ |$$ |$$ |  $$ |
+    \__|   \______/  \______/       \__/     \__|\__|\__|  \__|
+"""
+
+
+dragon ="""""
+   (  )   /\   _                 (
+    \ |  (  \ ( \.(               )                      _____
+  \  \ \  `  `   ) \             (  ___                 / _   \
+ (_`    \+   . x  ( .\            \/   \____-----------/ (o)   \_
+- .-               \+  ;          (  O                           \____
+(__                +- .( -'.- <.   \_____________  `              \  /
+(_____            ._._: <_ - <- _- _  VVVVVVV VV V\                \/
+  .    /./.+-  . .- /  +--  - .    (--_AAAAAAA__A_/                |
+  (__ ' /x  / x _/ (                \______________//_              \_______
+ , x / ( '  . / .  /                                  \___'          \     /
+    /  /  _/ /    +                                       |           \   /
+   '  (__/                                               /              \/
+                                                       /                  \ 
+"""
