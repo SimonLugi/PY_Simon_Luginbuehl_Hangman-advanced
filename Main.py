@@ -8,31 +8,11 @@ graphicsUpdate= 0
 showtext=[]
 alreadyguessd:list=[]
 
-Wörterliste=[
-"Algorithmus",
-"API",
-"Cloud",
-"Datenbank",
-"Debugging",
-"Frontend",
-"Backend",
-"Netzwerk",
-"Server",
-"Virtualisierung",
-"Container",
-"DevOps",
-"Verschlüsselung",
-"Skripting",
-"Middleware",
-"Architektur",
-"Benutzeroberfläche",
-"Framework",
-"Microservices",
-"Repository"]
+Wörterliste=["Algorithmus", "API", "Cloud", "Daten", "Debugging", "Frontend", "Backend", "Server", "Datenbank", "Virtualisierung", "Container", "DevOps", "Verschlüsselung", "Skripting", "Middleware", "Architektur", "Benutzeroberfläche", "Framework", "Microservices", "Repository", "SSH", "VPN", "Load Balancer", "CI/CD", "Docker", "Kubernetes", "SQL", "NoSQL", "Firewall", "DNS", "HTTP", "HTTPS", "JSON", "XML", "API Gateway", "HTTP Proxy", "SSL", "TLS", "IPv4", "IPv6", "LAN", "WAN", "VLAN", "IPsec", "Gateway", "Switch", "Router", "Token", "Zertifikat", "Authentifizierung", "Autorisierung", "OAuth", "Sitzung", "Cookie", "Websocket", "Nginx", "Apache", "BGP", "NAT", "Subnetz", "CIDR", "Lastverteilung", "Backup", "Wiederherstellung", "RAID", "SSD", "HDD", "Bandbreite", "Durchsatz", "Latenz", "Ping", "Traceroute", "QoS", "DNSSEC", "CDN", "Edge Computing", "Cache", "Trefferquote", "DDoS", "Spoofing", "Phishing", "Social Engineering", "Zero Trust", "Malware", "Ransomware", "Virus", "Trojaner", "Wurm", "Botnetz", "Honeypot", "SIEM", "IDS", "IPS", "SOC", "Incident Response", "Penetrationstest", "Schwachstelle", "Exploit", "Patch"]
 
 def generateWord(Wörterliste: list):
     global wortlänge
-    rnum = random.randint(0,19)
+    rnum = random.randint(0,100)
     word: str = Wörterliste.pop(rnum)
     word = word.upper()
     listedWord = list(word)
@@ -44,17 +24,19 @@ def ShowtextEmptyslotsGenerator(word):
         showtext.append("_")
         
 def guess(listedWord, word):
+    global letter
     graphics(graphicsUpdate, showtext)
     if showtext == list(word):
         win()
-    if lives == 0:
+    elif lives == 0:
         death()
     else:
         letter = input("Gib bitte den Buchstaben den du raten möchtest ein:")
         letter = letter.upper()
         if letter in alreadyguessd :
             print("Letter:",letter,"alredy guessd")
-            guess(listedWord, word)  
+            alreadyguessd.append(letter) 
+            guess(listedWord, word) 
         elif letter in listedWord:
             MultipleLetterVerificationMecanism(letter, listedWord, word, showtext)
         elif letter not in listedWord:
@@ -67,8 +49,7 @@ def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
             lettertoshowfound = listedWord.pop(posinlist)
             listedWord.insert(posinlist,"/")
             showtext[posinlist]= lettertoshowfound
-            print(posinlist,lettertoshowfound)
-            alreadyguessd.append(letter)
+            alreadyguessd.append(letter) 
         else:
             guess(listedWord, word)
             
@@ -77,6 +58,7 @@ def damage(listedWord, word):
     print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
     lives -= 1
     graphicsUpdate += 1
+    alreadyguessd.append(letter) 
     print("Du hast noch ",lives," leben")
     guess(listedWord, word)
          
