@@ -1,11 +1,11 @@
 import hang
 import random
 
-global lives, gpUpdate
+global lives, graphicsUpdate
 lives=int(6)
 gamestart=0
-gpUpdate= 0
-shtext=[]
+graphicsUpdate= 0
+showtext=[]
 
 Wörterliste=[
 "Algorithmus",
@@ -37,53 +37,54 @@ def generateWord(Wörterliste: list):
     print(listedWord)
     return(listedWord, word)
 
-def showgen(word):
+def ShowtextEmptyslotsGenerator(word):
     for i in range(0,len(list(word))):
-        shtext.append("_")
+        showtext.append("_")
         
 def guess(listedWord, word):
-    graphics(gpUpdate,shtext)
-    letter = input("Gib bitte den Buchstaben den du raten möchtest ein:")
-    letter = letter.upper()
-    if letter in listedWord:
-        tfmi(letter=letter,listedWord=listedWord,word=word,shtext=shtext)
-    elif listedWord == []:
-        win()
-    elif letter not in listedWord:
-        damage(listedWord,word)
-    #elif letter in shtext :
-        
-def tfmi(letter,listedWord,word,shtext):
+    graphics(graphicsUpdate,showtext)
+    if lives == 0:
+        death()
+    else:
+        letter = input("Gib bitte den Buchstaben den du raten möchtest ein:")
+        letter = letter.upper()
+        if letter in showtext :
+            print("Letter:",letter,"alredy guessd")
+            guess(listedWord,word)  
+        elif letter in listedWord:
+            MultipleLetterVerificationMecanism(letter=letter,listedWord=listedWord,word=word,showtext=showtext)
+        elif listedWord == ['']:
+            win()
+        elif letter not in listedWord:
+            damage(listedWord,word)
+     
+def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
     for _ in range(0,len(list(word))):
         if letter in listedWord:
             posinlist = listedWord.index(letter)
             lettertoshowfound = listedWord.pop(posinlist)
             listedWord.insert(posinlist,"/")
-            shtext[posinlist]= lettertoshowfound
+            showtext[posinlist]= lettertoshowfound
             print(posinlist,lettertoshowfound)
         else:
             guess(listedWord=listedWord,word=word)
             
 def damage(listedWord, word):
-    global lives, gpUpdate
+    global lives, graphicsUpdate
     print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
     lives -= 1
     print(lives)
-    gpUpdate += 1
+    graphicsUpdate += 1
     print("Du hast noch ",lives," leben")
-    if lives == 0:
-        death()
-    else:
-        guess(listedWord, word)
-        
-        
+    guess(listedWord, word)
+         
 def death():
     print(hang.death)
     print("You Died")
     
-def graphics(gpUpdate, shtext):
-    print(hang.man[gpUpdate])
-    print(shtext)
+def graphics(graphicsUpdate, showtext):
+    print(hang.man[graphicsUpdate])
+    print(showtext)
 
 def win():
     print(chr(27) + "[2J")
@@ -92,7 +93,7 @@ def win():
 def main():
     hang.startsceen()
     listedWord, word = generateWord(Wörterliste)
-    showgen(word)
+    ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
     
 if __name__ == "__main__":
