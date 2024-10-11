@@ -187,10 +187,10 @@ def startsceen():
     print("|---Welcome to Python Hangman---|")
     print("|            Made By            |")
     print("|                               |")
-    print("| #######   #     #    ###      |")
-    print("|    #      ##   ##   #         |")
-    print("|    #      # # # #   #         |")
-    print("|    #      #  #  #    ###      |")
+    print("|   #######   #     #    ###    |")
+    print("|      #      ##   ##   #       |")
+    print("|      #      # # # #   #       |")
+    print("|      #      #  #  #    ###    |")
     print("|-------------------------------|")
 
 

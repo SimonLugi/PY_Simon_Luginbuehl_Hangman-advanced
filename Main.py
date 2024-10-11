@@ -14,15 +14,15 @@ def playagain():
     inx = inx.upper()
     if inx == "YES":
         main()
+    elif inx == "No":
+        exit(0)
     else:
-        exit
-
-Wörterliste=["Algorithmus", "API", "Cloud", "Daten", "Debugging", "Frontend", "Backend", "Server", "Datenbank", "Virtualisierung", "Container", "DevOps", "Verschlüsselung", "Skripting", "Middleware", "Architektur", "Benutzeroberfläche", "Framework", "Microservices", "Repository", "SSH", "VPN", "Load Balancer", "CI", "Docker", "Kubernetes", "SQL", "NoSQL", "Firewall", "DNS", "HTTP", "HTTPS", "JSON", "XML", "Gateway", "HTTP Proxy", "SSL", "TLS", "IPv4", "IPv6", "LAN", "WAN", "VLAN", "IPsec", "Gateway", "Switch", "Router", "Token", "Zertifikat", "Authentifizierung", "Autorisierung", "OAuth", "Sitzung", "Cookie", "Websocket", "Nginx", "Apache", "BGP", "NAT", "Subnetz", "CIDR", "Lastverteilung", "Backup", "Wiederherstellung", "RAID", "SSD", "HDD", "Bandbreite", "Durchsatz", "Latenz", "Ping", "Traceroute", "QoS", "DNSSEC", "CDN", "Edge Computing", "Cache", "Trefferquote", "DDoS", "Spoofing", "Phishing", "Social Engineering", "Zero Trust", "Malware", "Ransomware", "Virus", "Trojaner", "Wurm", "Botnetz", "Honeypot", "SIEM", "IDS", "IPS", "SOC", "Incident Response", "Penetrationstest", "Schwachstelle", "Exploit", "Patch"]
+        print("Invalider input try again")
+        playagain()
 
 def generateWord(Wörterliste: list):
     global wortlänge
     rnum = random.randint(0,95)
-    print("RNUM",rnum)
     word: str = Wörterliste.pop(rnum)
     word = word.upper()
     listedWord = list(word)
@@ -34,7 +34,8 @@ def ShowtextEmptyslotsGenerator(word):
         showtext.append("_")
         
 def guess(listedWord, word):
-    sel = input("Was wilst du raten? Word / Buchstabe:")
+    graphics(graphicsUpdate, showtext)
+    sel = input("Was wilst du raten? W für Wort / B für Buchstabe:")
     sel = sel.upper()
     if sel == "B":
         guessLetter(listedWord, word)
@@ -45,7 +46,6 @@ def guess(listedWord, word):
         guess(listedWord,word)        
         
 def guessWord(listedWord, word):
-    graphics(graphicsUpdate, showtext)
     if showtext == list(word):
         win()
     elif lives == 0:
@@ -62,7 +62,6 @@ def guessWord(listedWord, word):
 
 def guessLetter(listedWord, word):
     global letter
-    graphics(graphicsUpdate, showtext)
     if showtext == list(word):
         win()
     elif lives == 0:
@@ -74,6 +73,8 @@ def guessLetter(listedWord, word):
             print("Letter:",letter,"alredy guessLetterd")
             alreadyguessLetter.append(letter) 
             guess(listedWord, word) 
+        elif list(letter) == list(word):
+            win()
         elif letter in listedWord:
             MultipleLetterVerificationMecanism(letter, listedWord, word, showtext)
         elif letter not in listedWord:
@@ -123,16 +124,18 @@ def win():
     playagain()
     
 def singelplayer():
-    hang.Wörterliste
+    Wörterliste = hang.Wörterliste
     listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 
 def doubleplayer():
-    listedWord, word= generateWord(list(input("Gib das wort ein das dein mitspieler erraten soll:")))
+    inword = input("Gib das wort ein das dein mitspieler erraten soll:")
+    print(chr(27) + "[2J")
+    word = inword.upper()
+    listedWord = list(word)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
-
 
 def main():
     hang.startsceen()
