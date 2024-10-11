@@ -2,14 +2,14 @@ import hang
 import random
 import time
 
-global lives, graphicsUpdate,out,showtext;alreadyguessLetter
+global lives, graphicsUpdate,out,showtext,alreadyguessLetter
 def reset():
     global lives, graphicsUpdate,out,showtext,alreadyguessLetter
     lives=int(6)
     graphicsUpdate= 0
     showtext=[]
     out = ""
-    alreadyguessLetter:list=[]
+    alreadyguessLetter=[]
     
 def playagain():
     inx = input("Do you want to play again? Yes/No: ")
@@ -64,7 +64,7 @@ def guessWord(listedWord, word):
             damage(listedWord,word)
 
 def guessLetter(listedWord, word):
-    global letter
+    global letter,alreadyguessLetter
     if showtext == list(word):
         win()
     elif lives == 0:
@@ -84,6 +84,7 @@ def guessLetter(listedWord, word):
             damage(listedWord,word)
 
 def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
+    global alreadyguessLetter
     for _ in range(0,len(list(word))):
         if letter in listedWord:
             posinlist = listedWord.index(letter)
@@ -95,7 +96,7 @@ def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
             guess(listedWord, word)
             
 def damage(listedWord, word):
-    global lives, graphicsUpdate
+    global lives, graphicsUpdate,alreadyguessLetter
     print("Leider ist der Buchtabe oder das Wort kein Bestantteil des Wortes! 🗡- 🗡- AUA")
     lives -= 1
     graphicsUpdate += 1
@@ -155,5 +156,6 @@ def main():
         print(chr(27) + "[2J")
         print("Invalider input versuche es erneut!\n\n")
         main()
+        
 if __name__ == "__main__":
     main()
