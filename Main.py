@@ -1,8 +1,13 @@
+import http.server
 import hang
 import random
 import time
+import http
 
 global lives, graphicsUpdate,out,showtext,alreadyguessLetter
+def seecret1():
+    http.server(index.html)
+
 def reset():
     global lives, graphicsUpdate,out,showtext,alreadyguessLetter
     lives=int(6)
@@ -42,7 +47,8 @@ def guess(listedWord, word):
     elif lives == 0:
         death()
     graphics(graphicsUpdate, showtext)
-    sel = input("Was wilst du raten? W für Wort / B für Buchstabe:")
+    #sel = input("Was wilst du raten? W für Wort / B für Buchstabe:")
+    sel = "B"
     sel = sel.upper()
     if sel == "B":
         guessLetter(listedWord, word)
@@ -119,7 +125,6 @@ def death():
     
 def graphics(graphicsUpdate, showtext):
     print(hang.man[graphicsUpdate])
-    print(alreadyguessLetter)
     dys:list = showtext[:]
     out:str = " "
     for i in range(len(showtext)):
