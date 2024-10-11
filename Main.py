@@ -7,7 +7,7 @@ lives=int(6)
 gamestart=0
 graphicsUpdate= 0
 showtext=[]
-alreadyguessd:list=[]
+alreadyguessLetter:list=[]
 
 def playagain():
     inx = input("Do you want to play again? Yes/No: ")
@@ -16,7 +16,6 @@ def playagain():
         main()
     else:
         exit
-
 
 Wörterliste=["Algorithmus", "API", "Cloud", "Daten", "Debugging", "Frontend", "Backend", "Server", "Datenbank", "Virtualisierung", "Container", "DevOps", "Verschlüsselung", "Skripting", "Middleware", "Architektur", "Benutzeroberfläche", "Framework", "Microservices", "Repository", "SSH", "VPN", "Load Balancer", "CI", "Docker", "Kubernetes", "SQL", "NoSQL", "Firewall", "DNS", "HTTP", "HTTPS", "JSON", "XML", "Gateway", "HTTP Proxy", "SSL", "TLS", "IPv4", "IPv6", "LAN", "WAN", "VLAN", "IPsec", "Gateway", "Switch", "Router", "Token", "Zertifikat", "Authentifizierung", "Autorisierung", "OAuth", "Sitzung", "Cookie", "Websocket", "Nginx", "Apache", "BGP", "NAT", "Subnetz", "CIDR", "Lastverteilung", "Backup", "Wiederherstellung", "RAID", "SSD", "HDD", "Bandbreite", "Durchsatz", "Latenz", "Ping", "Traceroute", "QoS", "DNSSEC", "CDN", "Edge Computing", "Cache", "Trefferquote", "DDoS", "Spoofing", "Phishing", "Social Engineering", "Zero Trust", "Malware", "Ransomware", "Virus", "Trojaner", "Wurm", "Botnetz", "Honeypot", "SIEM", "IDS", "IPS", "SOC", "Incident Response", "Penetrationstest", "Schwachstelle", "Exploit", "Patch"]
 
@@ -35,6 +34,33 @@ def ShowtextEmptyslotsGenerator(word):
         showtext.append("_")
         
 def guess(listedWord, word):
+    sel = input("Was wilst du raten? Word / Buchstabe:")
+    sel = sel.upper()
+    if sel == "B":
+        guessLetter(listedWord, word)
+    elif sel == "W":
+        guessWord(listedWord, word)
+    else:
+        print("Invalider input versuche es erneut!")
+        guess(listedWord,word)        
+        
+def guessWord(listedWord, word):
+    graphics(graphicsUpdate, showtext)
+    if showtext == list(word):
+        win()
+    elif lives == 0:
+        death()
+    else:
+        wordguess = input("Gib bitte das Wort ein das du raten möchtest ein:")
+        wordguess = wordguess.upper()
+        letter = "/"
+        wordtest = word.upper()
+        if wordguess == wordtest:
+            win()
+        elif wordguess != wordtest:
+            damage(listedWord,word)
+
+def guessLetter(listedWord, word):
     global letter
     graphics(graphicsUpdate, showtext)
     if showtext == list(word):
@@ -44,9 +70,9 @@ def guess(listedWord, word):
     else:
         letter = input("Gib bitte den Buchstaben den du raten möchtest ein:")
         letter = letter.upper()
-        if letter in alreadyguessd :
-            print("Letter:",letter,"alredy guessd")
-            alreadyguessd.append(letter) 
+        if letter in alreadyguessLetter :
+            print("Letter:",letter,"alredy guessLetterd")
+            alreadyguessLetter.append(letter) 
             guess(listedWord, word) 
         elif letter in listedWord:
             MultipleLetterVerificationMecanism(letter, listedWord, word, showtext)
@@ -60,7 +86,7 @@ def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
             lettertoshowfound = listedWord.pop(posinlist)
             listedWord.insert(posinlist,"/")
             showtext[posinlist]= lettertoshowfound
-            alreadyguessd.append(letter) 
+            alreadyguessLetter.append(letter) 
         else:
             guess(listedWord, word)
             
@@ -69,7 +95,7 @@ def damage(listedWord, word):
     print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
     lives -= 1
     graphicsUpdate += 1
-    alreadyguessd.append(letter) 
+    alreadyguessLetter.append(letter) 
     print("Du hast noch ",lives," leben")
     guess(listedWord, word)
          
@@ -95,12 +121,26 @@ def win():
         print("\n")
         time.sleep(0.125)  
     playagain()
-def main():
+    
+def singelplayer():
     hang.Wörterliste
-    hang.startsceen()
     listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
-    
+
+def doubleplayer():
+    listedWord, word= generateWord(list(input("Gib das wort ein das dein mitspieler erraten soll:")))
+    ShowtextEmptyslotsGenerator(word)
+    guess(listedWord, word)
+
+
+def main():
+    hang.startsceen()
+    inpex = input("Wilkommen zu HANGMAN was wilst du spielen?\n M für Multiplayer S für Singelplayer:")
+    inpex = inpex.upper()
+    if inpex =="M":
+        doubleplayer()
+    elif inpex =="S":
+        singelplayer()
 if __name__ == "__main__":
     main()
