@@ -36,6 +36,10 @@ def ShowtextEmptyslotsGenerator(word):
         showtext.append("_")
         
 def guess(listedWord, word):
+    if showtext == list(word):
+        win()
+    elif lives == 0:
+        death()
     graphics(graphicsUpdate, showtext)
     sel = input("Was wilst du raten? W für Wort / B für Buchstabe:")
     sel = sel.upper()
