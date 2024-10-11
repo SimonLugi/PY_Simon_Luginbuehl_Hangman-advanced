@@ -145,5 +145,8 @@ def main():
         doubleplayer()
     elif inpex =="S":
         singelplayer()
+    else:
+        print("Invalider input versuche es erneut!")
+        main()
 if __name__ == "__main__":
     main()
