@@ -2,13 +2,15 @@ import hang
 import random
 import time
 
-global lives, graphicsUpdate,out
-lives=int(6)
-gamestart=0
-graphicsUpdate= 0
-showtext=[]
-alreadyguessLetter:list=[]
-
+global lives, graphicsUpdate,out,showtext;alreadyguessLetter
+def reset():
+    global lives, graphicsUpdate,out,showtext,alreadyguessLetter
+    lives=int(6)
+    graphicsUpdate= 0
+    showtext=[]
+    out = ""
+    alreadyguessLetter:list=[]
+    
 def playagain():
     inx = input("Do you want to play again? Yes/No: ")
     inx = inx.upper()
@@ -105,6 +107,8 @@ def death():
     print(hang.death)
     print("You Died")
     print(hang.dragon)
+    time.sleep(1)
+    print(chr(27) + "[2J")
     playagain()
     
 def graphics(graphicsUpdate, showtext):
@@ -140,6 +144,7 @@ def doubleplayer():
 
 def main():
     hang.startsceen()
+    reset()
     inpex = input("Wilkommen zu HANGMAN was wilst du spielen?\n M für Multiplayer S für Singelplayer:")
     inpex = inpex.upper()
     if inpex =="M":
@@ -147,7 +152,8 @@ def main():
     elif inpex =="S":
         singelplayer()
     else:
-        print("Invalider input versuche es erneut!")
+        print(chr(27) + "[2J")
+        print("Invalider input versuche es erneut!\n\n")
         main()
 if __name__ == "__main__":
     main()
