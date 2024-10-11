@@ -25,6 +25,7 @@ def playagain():
 def generateWord(Wörterliste: list):
     global wortlänge
     rnum = random.randint(0,95)
+    print(rnum)
     word: str = Wörterliste.pop(rnum)
     word = word.upper()
     listedWord = list(word)
@@ -77,7 +78,7 @@ def guessLetter(listedWord, word):
         letter = input("Gib bitte den Buchstaben den du raten möchtest ein:")
         letter = letter.upper()
         if letter in alreadyguessLetter :
-            print("Letter:",letter,"alredy guessLetterd")
+            print("Letter:",letter,"already guess")
             alreadyguessLetter.append(letter) 
             guess(listedWord, word) 
         elif list(letter) == list(word):
@@ -118,6 +119,7 @@ def death():
     
 def graphics(graphicsUpdate, showtext):
     print(hang.man[graphicsUpdate])
+    print(alreadyguessLetter)
     dys:list = showtext[:]
     out:str = " "
     for i in range(len(showtext)):
