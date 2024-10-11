@@ -46,6 +46,7 @@ def guess(listedWord, word):
         guess(listedWord,word)        
         
 def guessWord(listedWord, word):
+    global letter
     if showtext == list(word):
         win()
     elif lives == 0:
@@ -93,7 +94,7 @@ def MultipleLetterVerificationMecanism(letter,listedWord,word,showtext):
             
 def damage(listedWord, word):
     global lives, graphicsUpdate
-    print("Leider ist der Buchtabe nicht in dem Gesuchten wort! 🗡- 🗡- AUA")
+    print("Leider ist der Buchtabe oder das Wort kein Bestantteil des Wortes! 🗡- 🗡- AUA")
     lives -= 1
     graphicsUpdate += 1
     alreadyguessLetter.append(letter) 
