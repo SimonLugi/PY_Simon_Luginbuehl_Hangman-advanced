@@ -13,9 +13,9 @@ function reset(){
 function playagain(){
     document.getElementById('User-Output').innerHTML = 'Wilst du nochmals Spielen Ja/Nein';
     let inx = document.getElementById('input').toUpperCase();
-    if (inx == "Ja"){
+    if (inx === "Ja"){
         main()
-    } else if (inx == "Nein"){
+    } else if (inx === "Nein"){
         exit(0)
     } else {
         document.getElementById('User-Output').innerHTML = 'Invalider input versuche es erneut!'
@@ -25,7 +25,7 @@ function playagain(){
 function generateWord(Wörterliste ){
     const rnum = Math.floor(Math.random() * 96);
     console.log(rnum);
-    const word = Wörterliste.splice(rnum,1)[0].toUpperCase();
+    const word = Wörterliste.splice(rnum, 1)[0].toUpperCase();
     const listedWord = word.split('');
     return[listedWord, word];
 }
@@ -33,19 +33,19 @@ function ShowtextEmptyslotsGenerator(word){
     showtext = Array(word.length).fill("_")
 }
 function guess(listedWord, word){
-    if (showtext == word.split('')){
+    if (showtext.join('') === word){
         win()
     }
-    else if (lives == 0){
+    else if (lives === 0){
         death()
     }
     graphics(graphicsUpdate, showtext)
     //sel = input("Was wilst du raten? W für Wort / B für Buchstabe{") // Für überkorrekte spieler 
     var sel = "B"
     var sel = sel.toUpperCase()
-    if (sel == "B"){
+    if (sel === "B"){
         guessLetter(listedWord, word)
-    }else if (sel == "W"){
+    }else if (sel === "W"){
         guessWord(listedWord, word)
     }else{
         document.getElementById('User-Output').innerHTML = 'Invalider input versuche es erneut!'
@@ -53,9 +53,9 @@ function guess(listedWord, word){
     }
 }
 function guessWord(listedWord, word){
-    if (showtext == list(word)){
+    if (showtext.join('') === word){
         win()
-    }else if (lives == 0){
+    }else if (lives === 0){
         death()
     }else{
         document.getElementById('User-Output').innerHTML = 'Gib bitte das Wort ein das du raten möchtest ein:';
@@ -63,7 +63,7 @@ function guessWord(listedWord, word){
         var wordguess = wordguess.toUpperCase();
         var letter = "/"
         var wordtest = word.toUpperCase();
-        if (wordguess == wordtest){
+        if (wordguess === wordtest){
             win()
         }else if (wordguess != wordtest){
             damage(listedWord,word)
@@ -71,9 +71,9 @@ function guessWord(listedWord, word){
     }
 }
 function guessLetter(listedWord, word){
-    if (showtext == list(word)){
+    if (showtext.join('') === word){
         win()
-    }else if (lives == 0){
+    }else if (lives === 0){
         death()
     }else{
         document.getElementById('User-Output').innerHTML = 'Gib bitte den Buchstaben den du raten möchtest ein'
@@ -83,7 +83,7 @@ function guessLetter(listedWord, word){
             document.getElementById('User-Output').innerHTML = 'Letter:',letter,'already guess'
             alreadyguessLetter.append(letter) 
             guess(listedWord, word) 
-        }else if (list(letter) == list(word)){
+        }else if (list(letter) === list(word)){
             win()
         }else if (letter in listedWord){
             MultipleLetterVerificationMecanism(letter, listedWord, word, showtext)
@@ -125,7 +125,7 @@ function graphics(graphicsUpdate, showtext){
     //print(hang.man[graphicsUpdate])
     var dys = showtext.slice()
     out = " "
-    for (i in range(len(showtext))){
+    for (let i = 0; i < showtext.length; i++){
         le = dys.splice(0)
         out = out + le + " "
     }
@@ -149,7 +149,7 @@ function doubleplayer(){
     document.getElementById('User-Output').innerHTML = 'Gib das wort ein das dein mitspieler erraten soll:'
     let inword = document.getElementById('input').value;
     let word = inword.toUpperCase()
-    listedWord = word.split('')
+    listedWord = word
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 }
