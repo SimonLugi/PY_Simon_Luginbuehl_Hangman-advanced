@@ -1,20 +1,13 @@
-import http.server
+from server import run_server
 import hang
 import random
 import time
-import http
 
 global lives, graphicsUpdate,out,showtext,alreadyguessLetter
 
-webServer = http.server.HTTPServer()
-def reset():
-    global lives, graphicsUpdate,out,showtext,alreadyguessLetter
-    lives=int(6)
-    graphicsUpdate= 0
-    showtext=[]
-    out = ""
-    alreadyguessLetter=[]
-    
+def web():
+    run_server()
+
 def playagain():
     inx = input("Do you want to play again? Yes/No: ")
     inx = inx.upper()
@@ -166,6 +159,5 @@ def main():
         print(chr(27) + "[2J")
         print("Invalider input versuche es erneut!\n\n")
         main()
-    webserver()
 if __name__ == "__main__":
     main()
