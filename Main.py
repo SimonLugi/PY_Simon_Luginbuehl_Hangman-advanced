@@ -119,7 +119,7 @@ def death():
     print(hang.death)
     print("You Died")
     print(hang.dragon)
-    time.sleep(1)
+    time.sleep(5)
     print(chr(27) + "[2J")
     playagain()
     
@@ -155,7 +155,7 @@ def doubleplayer():
     guess(listedWord, word)
 
 def main():
-    hang.startsceen()
+    print(hang.startscreen)
     reset()
     inpex = input("Wilkommen zu HANGMAN was wilst du spielen?\n M für Multiplayer S für Singelplayer:")
     inpex = inpex.upper()

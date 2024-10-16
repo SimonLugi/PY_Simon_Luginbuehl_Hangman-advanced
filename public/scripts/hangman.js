@@ -1,40 +1,39 @@
 var input = document.getElementById("input");
-const hang = require('./hang');
+//const hang = require('hang.js');
+
+let lives, graphicsUpdate, out, showtext, alreadyguessLetter, letter;
 
 function reset(){
-    lives=int(6)
+    lives=6;
     graphicsUpdate= 0
     showtext=[]
     out = ""
     alreadyguessLetter=[]
 }
 function playagain(){
-    inx = input("Do you want to play again? Yes/No{ ")
-    inx = inx.toUpperCase()
-    if (inx == "YES"){
+    document.getElementById('User-Output').innerHTML = 'Wilst du nochmals Spielen Ja/Nein';
+    let inx = document.getElementById('input').toUpperCase();
+    if (inx == "Ja"){
         main()
-    } else if (inx == "No"){
+    } else if (inx == "Nein"){
         exit(0)
     } else {
-        print("Invalider input try again")
+        document.getElementById('User-Output').innerHTML = 'Invalider input versuche es erneut!'
         playagain()
     }
 }
 function generateWord(Wörterliste ){
     const rnum = random.randint(0,95);
     console.log(rnum);
-    const word = Wörterliste.splice(rnum,1)[o].toUpperCase();
+    const word = Wörterliste.splice(rnum,1)[0].toUpperCase();
     const listedWord = word.split('');
-    const wortlänge = listedWord.length;
     return[listedWord, word];
 }
 function ShowtextEmptyslotsGenerator(word){
-    for (i in range(0,len(list(word)))){
-        showtext.append("_")
-    }
+    showtext = Array(word.length).fill("_")
 }
 function guess(listedWord, word){
-    if (showtext == list(word)){
+    if (showtext == word.split('')){
         win()
     }
     else if (lives == 0){
@@ -42,14 +41,14 @@ function guess(listedWord, word){
     }
     graphics(graphicsUpdate, showtext)
     //sel = input("Was wilst du raten? W für Wort / B für Buchstabe{") // Für überkorrekte spieler 
-    sel = "B"
-    sel = sel.toUpperCase()
+    var sel = "B"
+    var sel = sel.toUpperCase()
     if (sel == "B"){
         guessLetter(listedWord, word)
     }else if (sel == "W"){
         guessWord(listedWord, word)
     }else{
-        print("Invalider input versuche es erneut!")
+        document.getElementById('User-Output').innerHTML = 'Invalider input versuche es erneut!'
         guess(listedWord,word)        
     }
 }
@@ -59,10 +58,11 @@ function guessWord(listedWord, word){
     }else if (lives == 0){
         death()
     }else{
-        wordguess = input("Gib bitte das Wort ein das du raten möchtest ein{")
-        wordguess = wordguess.toUpperCase()
-        letter = "/"
-        wordtest = word.toUpperCase()
+        document.getElementById('User-Output').innerHTML = 'Gib bitte das Wort ein das du raten möchtest ein:';
+        var wordguess = input("Gib bitte das Wort ein das du raten möchtest ein");
+        var wordguess = wordguess.toUpperCase();
+        var letter = "/"
+        var wordtest = word.toUpperCase();
         if (wordguess == wordtest){
             win()
         }else if (wordguess != wordtest){
@@ -76,7 +76,8 @@ function guessLetter(listedWord, word){
     }else if (lives == 0){
         death()
     }else{
-        letter = input("Gib bitte den Buchstaben den du raten möchtest ein{")
+        document.getElementById('User-Output').innerHTML = 'Gib bitte den Buchstaben den du raten möchtest ein'
+        let letter = document.getElementById('input');
         letter = letter.toUpperCase()
         if (letter in alreadyguessLetter) {
             print("Letter{",letter,"already guess")
@@ -105,23 +106,23 @@ function MultipleLetterVerificationMecanism(letter,listedWord,word,showtext){
     }
 }
 function damage(listedWord, word){
-    print("Leider ist der Buchtabe oder das Wort kein Bestantteil des Wortes! 🗡- 🗡- AUA")
+    document.getElementById('User-Output').innerHTML = 'Leider ist der Buchtabe oder das Wort kein Bestantteil des Wortes! 🗡- 🗡- AUA'
     lives -= 1
     graphicsUpdate += 1
     alreadyguessLetter.append(letter) 
-    print("Du hast noch ",lives," leben")
+    document.getElementById('lives').innerHTML = lives
     guess(listedWord, word)
 }
 function death(){
-    print(hang.death)
+    //print(hang.death)
     print("You Died")
-    print(hang.dragon)
+    //print(hang.dragon)
     time.sleep(1)
     print(chr(27) + "[2J")
     playagain()
 }
 function graphics(graphicsUpdate, showtext){
-    print(hang.man[graphicsUpdate])
+    //print(hang.man[graphicsUpdate])
     var dys = showtext.slice()
     out = " "
     for (i in range(len(showtext))){
@@ -131,43 +132,143 @@ function graphics(graphicsUpdate, showtext){
     print("Word{",out)
 }
 function win(){
-    print(chr(27) + "[2J")
-    print(hang.win)
+    //print(hang.win)
     for (_ in range(0,20)){
-        print("\n")
         time.sleep(0.125)
     }  
     playagain()
 }
 function singelplayer(){
-    Wörterliste = hang.Wörterliste
-    listedWord, word= generateWord(Wörterliste)
+    var listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 }
 function doubleplayer(){
-    inword = input("Gib das wort ein das dein mitspieler erraten soll{")
-    print(chr(27) + "[2J")
-    word = inword.toUpperCase()
+    document.getElementById('User-Output').innerHTML = 'Gib das wort ein das dein mitspieler erraten soll:'
+    let inword = document.getElementById('input').value;
+    let word = inword.toUpperCase()
     listedWord = list(word)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 }
 function main(){
-    hang.startsceen()
     reset()
-    inpex = input("Wilkommen zu HANGMAN was wilst du spielen?\n M für Multiplayer S für Singelplayer{")
+    document.getElementById('lives').innerHTML = lives
+    document.getElementById('User-Output').innerHTML = 'Willkommen zu HANGMAN Bitte wähle den Spielmodus aus.\n M für Multiplayer S für Singelplayer'
+    let inpex = document.getElementById('input').value;
     inpex = inpex.toUpperCase()
     if (inpex =="M"){
         doubleplayer()
     }else if (inpex =="S"){
         singelplayer()
     }else{
-        print(chr(27) + "[2J")
         print("Invalider input versuche es erneut!\n\n")
         main()
     }
 }
-if (require.main === module) {
-    main();
-}
+document.addEventListener('DOMContentLoaded', main);
+
+
+const Wörterliste = [
+    "Algorithmus",
+    "API",
+    "Cloud",
+    "Daten",
+    "Debugging",
+    "Frontend",
+    "Backend",
+    "Server",
+    "Datenbank",
+    "Virtualisierung",
+    "Container",
+    "DevOps",
+    "Verschlüsselung",
+    "Skripting",
+    "Middleware",
+    "Architektur",
+    "Benutzeroberfläche",
+    "Framework",
+    "Microservices",
+    "Repository",
+    "SSH",
+    "VPN",
+    "Load",
+    "Balancer",
+    "CI",
+    "Docker",
+    "Kubernetes",
+    "SQL",
+    "NoSQL",
+    "Firewall",
+    "DNS",
+    "HTTP",
+    "HTTPS",
+    "JSON",
+    "XML",
+    "Gateway",
+    "HTTP Proxy",
+    "SSL",
+    "TLS",
+    "IPv4",
+    "IPv6",
+    "LAN",
+    "WAN",
+    "VLAN",
+    "IPsec",
+    "Gateway",
+    "Switch",
+    "Router",
+    "Token",
+    "Zertifikat",
+    "Authentifizierung",
+    "Autorisierung",
+    "OAuth",
+    "Sitzung",
+    "Cookie",
+    "Websocket",
+    "Nginx",
+    "Apache",
+    "BGP",
+    "NAT",
+    "Subnetz",
+    "CIDR",
+    "Lastverteilung",
+    "Backup",
+    "Wiederherstellung",
+    "RAID",
+    "SSD",
+    "HDD",
+    "Bandbreite",
+    "Durchsatz",
+    "Latenz",
+    "Ping",
+    "Traceroute",
+    "QoS",
+    "DNSSEC",
+    "CDN",
+    "Cache",
+    "Trefferquote",
+    "DDoS",
+    "Spoofing",
+    "Phishing",
+    "Malware",
+    "Ransomware",
+    "Virus",
+    "Trojaner",
+    "Wurm",
+    "Botnetz",
+    "Honeypot",
+    "SIEM",
+    "IDS",
+    "IPS",
+    "SOC",
+    "Penetrationstest",
+    "Schwachstelle",
+    "Exploit",
+    "Patch"
+]
+
+
+
+
+
