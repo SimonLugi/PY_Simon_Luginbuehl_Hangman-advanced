@@ -67,15 +67,19 @@
                 <div class="user-interface">
                     <p id="showtext" class="User-Output">DeafaultSHT</p>
                     <div class="leben">
-                        <p class="User-Output">Du hast noch <p id="lives" class="User-Output"></p><p class="User-Output"> leben</p>
+                        <p class="User-Output">Du hast noch ‎</p><p id="lives" class="User-Output"></p><p class="User-Output">‎ leben</p>
                     </div>
                 </div>
+                <div class="gm-sellection" id="gmsel">
+                    <button onclick="singelplayer()" type="submit" class="button" id="word">Einzelspieler</button>
+                    <button onclick="doubleplayer()" type="submit" class="button" id="word">Zweispieler</button>
+                </div>
                 <div class="interact">
-                    <button type="button" class="button" id="word">Wort Raten</button>
                     <form action="">
                         <input type="text" class="input" id="input">
                         <button type="submit" class="button">Submit</button>
                     </form>
+                    <button onclick="guessWord()" type="submit" class="button" id="word">Wort Raten</button>
                 </div>
             </div>
         </div>

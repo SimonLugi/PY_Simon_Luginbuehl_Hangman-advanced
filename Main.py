@@ -3,7 +3,7 @@ import hang
 import random
 import time
 
-global lives, graphicsUpdate,out,showtext,alreadyguessLetter
+global lives,graphicsUpdate,out,showtext,alreadyguessLetter
 
 def web():
     run_server()

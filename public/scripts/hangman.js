@@ -23,7 +23,7 @@ function playagain(){
     }
 }
 function generateWord(Wörterliste ){
-    const rnum = random.randint(0,95);
+    const rnum = Math.floor(Math.random() * 96);
     console.log(rnum);
     const word = Wörterliste.splice(rnum,1)[0].toUpperCase();
     const listedWord = word.split('');
@@ -80,7 +80,7 @@ function guessLetter(listedWord, word){
         let letter = document.getElementById('input');
         letter = letter.toUpperCase()
         if (letter in alreadyguessLetter) {
-            print("Letter{",letter,"already guess")
+            document.getElementById('User-Output').innerHTML = 'Letter:',letter,'already guess'
             alreadyguessLetter.append(letter) 
             guess(listedWord, word) 
         }else if (list(letter) == list(word)){
@@ -115,7 +115,7 @@ function damage(listedWord, word){
 }
 function death(){
     //print(hang.death)
-    print("You Died")
+    document.getElementById('User-Output').innerHTML = 'You Died'
     //print(hang.dragon)
     time.sleep(1)
     print(chr(27) + "[2J")
@@ -129,7 +129,7 @@ function graphics(graphicsUpdate, showtext){
         le = dys.splice(0)
         out = out + le + " "
     }
-    print("Word{",out)
+    document.getElementById('User-Output').innerHTML = 'Word:',out;
 }
 function win(){
     //print(hang.win)
@@ -139,15 +139,17 @@ function win(){
     playagain()
 }
 function singelplayer(){
+    gmsel.style.display = "none"
     var listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 }
 function doubleplayer(){
+    gmsel.style.display = "none"
     document.getElementById('User-Output').innerHTML = 'Gib das wort ein das dein mitspieler erraten soll:'
     let inword = document.getElementById('input').value;
     let word = inword.toUpperCase()
-    listedWord = list(word)
+    listedWord = word.split('')
     ShowtextEmptyslotsGenerator(word)
     guess(listedWord, word)
 }
@@ -157,14 +159,7 @@ function main(){
     document.getElementById('User-Output').innerHTML = 'Willkommen zu HANGMAN Bitte wähle den Spielmodus aus.\n M für Multiplayer S für Singelplayer'
     let inpex = document.getElementById('input').value;
     inpex = inpex.toUpperCase()
-    if (inpex =="M"){
-        doubleplayer()
-    }else if (inpex =="S"){
-        singelplayer()
-    }else{
-        print("Invalider input versuche es erneut!\n\n")
-        main()
-    }
+    gmsel.style.display = "block"
 }
 document.addEventListener('DOMContentLoaded', main);
 
