@@ -8,6 +8,14 @@ global lives, graphicsUpdate,out,showtext,alreadyguessLetter
 def web():
     run_server()
 
+def reset():
+    global lives, graphicsUpdate,out,showtext,alreadyguessLetter
+    lives=int(6)
+    graphicsUpdate= 0
+    showtext=[]
+    out = ""
+    alreadyguessLetter=[]
+
 def playagain():
     inx = input("Do you want to play again? Yes/No: ")
     inx = inx.upper()
@@ -39,8 +47,8 @@ def guess(listedWord, word):
     elif lives == 0:
         death()
     graphics(graphicsUpdate, showtext)
-    #sel = input("Was wilst du raten? W für Wort / B für Buchstabe:")
-    sel = "B"
+    #sel = input("Was wilst du raten? W für Wort / B für Buchstabe:") # Für überkorrekte spieler 
+    sel = "B" # Für überkorrekte spieler 
     sel = sel.upper()
     if sel == "B":
         guessLetter(listedWord, word)
