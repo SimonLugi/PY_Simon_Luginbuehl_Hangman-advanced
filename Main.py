@@ -5,9 +5,8 @@ import time
 import http
 
 global lives, graphicsUpdate,out,showtext,alreadyguessLetter
-def seecret1():
-    http.server(index.html)
 
+webServer = http.server.HTTPServer()
 def reset():
     global lives, graphicsUpdate,out,showtext,alreadyguessLetter
     lives=int(6)
@@ -167,6 +166,6 @@ def main():
         print(chr(27) + "[2J")
         print("Invalider input versuche es erneut!\n\n")
         main()
-        
+    webserver()
 if __name__ == "__main__":
     main()
