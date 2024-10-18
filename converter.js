@@ -100,11 +100,6 @@ function guessLetter(listedWord, word) {
     } else if (lives === 0) {
         death();
     } else {
-        const readline = require('readline').createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
-
         readline.question("Please enter the letter you want to guess: ", (inputLetter) => {
             letter = inputLetter.toUpperCase();
             if (alreadyguessLetter.includes(letter)) {

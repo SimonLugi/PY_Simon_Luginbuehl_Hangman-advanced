@@ -1,0 +1,182 @@
+{
+    "title": "Hangman Debug",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1018,
+            "height": 791,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "http://127.0.0.1:5500/public/index.html",
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "http://127.0.0.1:5500/public/index.html",
+                    "title": "Hangman"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Raten"
+                ],
+                [
+                    "div.interact button"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[3]/form/button"
+                ],
+                [
+                    "pierce/div.interact button"
+                ],
+                [
+                    "text/Raten"
+                ]
+            ],
+            "offsetY": 7.5,
+            "offsetX": 11.17498779296875
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Raten"
+                ],
+                [
+                    "div.interact button"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[3]/form/button"
+                ],
+                [
+                    "pierce/div.interact button"
+                ],
+                [
+                    "text/Raten"
+                ]
+            ],
+            "offsetY": 14.5,
+            "offsetX": 16.17498779296875,
+            "assertedEvents": [
+                {
+                    "type": "navigation"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "div.user-interface"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[1]"
+                ],
+                [
+                    "pierce/div.user-interface"
+                ]
+            ],
+            "offsetY": 33.75,
+            "offsetX": 25.125
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "div.user-interface > div"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[1]/div"
+                ],
+                [
+                    "pierce/div.user-interface > div"
+                ],
+                [
+                    "text/Du hast noch ‎6‎"
+                ]
+            ],
+            "offsetY": 30.25,
+            "offsetX": 77.125
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Einzelspieler"
+                ],
+                [
+                    "#gmsel > button:nth-of-type(1)"
+                ],
+                [
+                    "xpath///*[@id=\"word\"]"
+                ],
+                [
+                    "pierce/#gmsel > button:nth-of-type(1)"
+                ],
+                [
+                    "text/Einzelspieler"
+                ]
+            ],
+            "offsetY": 8.75,
+            "offsetX": 65.21249389648438
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Raten"
+                ],
+                [
+                    "div.interact button"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[3]/form/button"
+                ],
+                [
+                    "pierce/div.interact button"
+                ],
+                [
+                    "text/Raten"
+                ]
+            ],
+            "offsetY": 10.5,
+            "offsetX": 5.17498779296875
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Raten"
+                ],
+                [
+                    "div.interact button"
+                ],
+                [
+                    "xpath//html/body/main/section[2]/div/div/div[3]/form/button"
+                ],
+                [
+                    "pierce/div.interact button"
+                ],
+                [
+                    "text/Raten"
+                ]
+            ],
+            "offsetY": 13.5,
+            "offsetX": 6.17498779296875
+        }
+    ]
+}
