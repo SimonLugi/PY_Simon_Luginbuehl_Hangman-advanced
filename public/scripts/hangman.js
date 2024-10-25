@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', main);
 
 //const hang = require('hang.js');
 
-let lives = 0, graphicsUpdate = 0, out = "", showtext = [""], alreadyguessLetter = [""], letter = "",listedWord = [""];
+var lives = 0, graphicsUpdate = 0, out = "", showtext = [""], alreadyguessLetter = [""], letter = "",listedWord = [""],wortlänge= 0;
 
 function main(){
     reset()
@@ -12,58 +12,65 @@ function main(){
     inpex = inpex.toUpperCase()
     gmsel.style.display = "block"
     interact.style.display = "none"
+    playagaindiv.style.display = "none"
 }
-
-
-
 function reset(){
     lives=6;
     graphicsUpdate= 0
-    showtext=[]
-    alreadyguessLetter=[]
-    listedWord = []
+    showtext=[""]
+    alreadyguessLetter=[""]
+    listedWord = [""]
     letter = ""
     out = ""
 }
 function playagain(){
-    document.getElementById('User-Output').innerHTML = 'Wilst du nochmals Spielen Ja/Nein';
-    let inx = document.getElementById('input').value.toUpperCase();
     interact.style.display = "none"
-    if (inx === "Ja"){
-        main()
-    } else if (inx === "Nein"){
-        exit(0)
-    } else {
-        document.getElementById('User-Output').innerHTML = 'Invalider input versuche es erneut!'
-        playagain()
-    }
+    playagaindiv.style.display = "true"
 }
 function generateWord(Wörterliste ){
     const rnum = Math.floor(Math.random() * 96);
     console.log(rnum);
-    const word = Wörterliste.splice(rnum, 1)[0].toUpperCase();
-    const listedWord = word.split('');
+    word = Wörterliste.splice(rnum, 1)[0].toUpperCase();
+    listedWord = word.split('');
+    wortlänge = word.length
     console.log(listedWord);
     console.log(word);
-    return[listedWord, word];
+    console.log("wort länge ist:",wortlänge)
+    return listedWord, word, wortlänge;
 }
-function ShowtextEmptyslotsGenerator(word){
-    showtext = Array(word.length).fill("_")
+function ShowtextEmptyslotsGenerator(wortlänge){
+    showtext = [];
+    for(var i=0;i<wortlänge.length;i++){
+        showtext.push("_");
+    }   
+    for (var i=0;i<wortlänge.length;i++){
+        le = showtext.slice(0)
+        out = out + le + " "
+        console.log(out)
+    }
+    document.getElementById('User-Output').innerHTML = 'Word:' + out;
+    console.log("Generatted empty word",showtext,"wortlänge",wortlänge.length,"Output:",out)
+    return showtext;
+}
+function wait4Guess(){
+    interact.style.display = "block"
+    document.getElementById('User-Output').innerHTML = 'Gib bitte den Buchstaben den du raten möchtest ein'
+    document.getElementById('input').value = ""
+}
+function sendGuess(){
+    guessLetter(listedWord, word)
 }
 function guessLetter(listedWord, word){
-    interact.style.display = "block"
+    console.log(listedWord, "out of guessletter")
     if (showtext.join('') === word){
         win()
     }else if (lives === 0){
         death()
     }else{
-        document.getElementById('User-Output').innerHTML = 'Gib bitte den Buchstaben den du raten möchtest ein'
         let letter = document.getElementById('input').value.toUpperCase();
-        console.log(letter);
         if (alreadyguessLetter.includes(letter)) {
             document.getElementById('User-Output').innerHTML = 'Letter:',letter,'already guess'
-            alreadyguessLetter.push(letter); 
-            guessLetter(listedWord, word);
+            wait4Guess();
         }else if (letter === word){
             win()
         }else if (listedWord.includes(letter)){
@@ -76,54 +83,47 @@ function guessLetter(listedWord, word){
 function MultipleLetterVerificationMecanism(letter,listedWord,word,showtext){
     for (let i = 0; i < word.length; i++){
         if (letter in listedWord){
-            posinlist = listedWord.index(letter)
-            lettertoshowfound = listedWord.splice(posinlist)
-            listedWord.insert(posinlist,"/")
-            showtext[posinlist]= lettertoshowfound
-            alreadyguessLetter.push(letter); 
-        }else{
-            guessLetter(listedWord, word)
-        }     
+            posinlist = listedWord.index(letter);
+            lettertoshowfound = listedWord.splice(posinlist);
+            listedWord.insert(posinlist,"/");
+            showtext[posinlist]= lettertoshowfound;
+            console.log(letter);
+            alreadyguessLetter.splice(letter); 
+            console.log(alreadyguessLetter);
+        }   
     }
 }
 function damage(listedWord, word){
     document.getElementById('User-Output').innerHTML = 'Leider ist der Buchtabe oder das Wort kein Bestantteil des Wortes! 🗡- 🗡- AUA'
     lives -= 1
     graphicsUpdate += 1
-    alreadyguessLetter.push(letter); 
+    console.log(letter);
+    alreadyguessLetter.splice(letter); 
+    console.log(alreadyguessLetter);
     document.getElementById('lives').innerHTML = lives
-    guessLetter(listedWord, word)
 }
 function death(){
-    //print(hang.death)
     document.getElementById('User-Output').innerHTML = 'You Died'
-    //print(hang.dragon)
-    time.sleep(1)
-    print(chr(27) + "[2J")
     playagain()
+    playagaindiv.style.display = "block"
 }
 function graphics(graphicsUpdate, showtext){
-    //print(hang.man[graphicsUpdate])
     var dys = showtext.slice()
-    out = " "
     for (let i = 0; i < showtext.length; i++){
-        le = dys.splice(0)
-        out = out + le + " "
+        var le = dys.splice(0)
+        var out = out + le + " "
     }
     document.getElementById('User-Output').innerHTML = 'Word:',out;
 }
 function win(){
-    //print(hang.win)
-    for (let i = 0; i < 20; i++){
-        time.sleep(0.125)
-    }  
     playagain()
+    playagaindiv.style.display = "block"
 }
 function singelplayer(){
     gmsel.style.display = "none"
     var listedWord, word= generateWord(Wörterliste)
     ShowtextEmptyslotsGenerator(word)
-    guessLetter(listedWord, word)
+    wait4Guess()
 }
 function doubleplayer(){
     gmsel.style.display = "none"
@@ -132,10 +132,12 @@ function doubleplayer(){
     let word = inword.toUpperCase()
     listedWord = word
     ShowtextEmptyslotsGenerator(word)
-    guessLetter(listedWord, word)
+    wait4Guess()
 }
 
-
+function close() {
+    openedWindow.close();
+}
 
 const Wörterliste = [
     "Algorithmus",

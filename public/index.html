@@ -65,7 +65,7 @@
             <div class="user">
                 <p id="User-Output" class="User-Output"></p>
                 <div class="user-interface">
-                    <p id="showtext" class="User-Output">DeafaultSHT</p>
+                    <p id="showtext" class="User-Output"></p>
                     <div class="leben">
                         <p class="User-Output">Du hast noch ‎</p><p id="lives" class="User-Output"></p><p class="User-Output">‎ leben</p>
                     </div>
@@ -77,7 +77,13 @@
                 <div class="interact" id="interact">
                     <form action="">
                         <input type="text" class="input" id="input">
-                        <button onclick="guessLetter()" type="button" class="button">Raten</button>
+                        <button onclick="sendGuess()" type="button" class="button">Raten</button>
+                    </form>
+                </div>
+                <div class="interact" id="playagaindiv">
+                    <form action="">
+                        <button onclick="main()" type="button" class="button" id="word">Ja</button>
+                        <button onclick="close()" type="button" class="button" id="word">NEIN</button>
                     </form>
                 </div>
             </div>
