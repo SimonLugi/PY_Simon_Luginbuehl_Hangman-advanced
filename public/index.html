@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/5a4c0976d6.js" crossorigin="anonymous"></script>
-    <script src="scripts/sidebar.js"></script>
     <script src="scripts/hangman.js"></script>
     <script src="scripts/hang.js"></script>
 </head>
@@ -71,19 +70,19 @@
                     </div>
                 </div>
                 <div class="gm-sellection" id="gmsel">
-                    <button onclick="singelplayer()" type="button" class="button" id="word">Einzelspieler</button>
-                    <button onclick="doubleplayer()" type="button" class="button" id="word">Zweispieler</button>
+                    <button onclick="mainInstance.singelplayer()" type="button" class="button" id="word">Einzelspieler</button>
+                    <button onclick="mainInstance.doubleplayer()" type="button" class="button" id="word">Zweispieler</button>
                 </div>
                 <div class="interact" id="interact">
                     <form action="">
                         <input type="text" class="input" id="input">
-                        <button onclick="sendGuess()" type="button" class="button">Raten</button>
+                        <button onclick="mainInstance.sendGuess()" type="button" class="button">Raten</button>
                     </form>
                 </div>
                 <div class="interact" id="playagaindiv">
                     <form action="">
-                        <button onclick="main()" type="button" class="button" id="word">Ja</button>
-                        <button onclick="close()" type="button" class="button" id="word">NEIN</button>
+                        <button onclick="mainInstance.main()" type="button" class="button" id="word">Ja</button>
+                        <button onclick="mainInstance.close()" type="button" class="button" id="word">NEIN</button>
                     </form>
                 </div>
             </div>
